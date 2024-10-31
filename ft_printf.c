@@ -10,40 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_putnbr.h"
 #include <stdio.h>
 #include <stdarg.h>
 
-va_list	args;
+static int	type(char format, va_list args)
+{
+	int count;
 
-va_start (args, format);
+	count = 0;
+	if (format == 'd' || format == 'i')
+		count += ft_putnbr(va_arg(args, int));
+	return (count);
+}
 
-va_arg (va_list var, type);
+int ft_putchar(int c)
+{
+	write (1, &c, 1);
+	return (1);
+}
 
 int	ft_printf(const char *s, ...)
 {
+	va_list	args;
 	int	i;
+	int	count;
 
+	count = 0;
 	i = 0;
+	va_start(args, s);
 	while (s[i])
 	{
-		if (s[i] != "%")
+		if (s[i] == '%')
+		{
 			i++;
-		if (s[i + 1] == "s")
-		{
-			type = char *;
-			ft_putstr(type);
+			count += type(s[i], args);
 		}
-		else if (s[i + 1] == "d")
-		{
-			type = int *;
-			ft_putnbr(type);
-		}
+		else
+			count += ft_putchar(s[i]);
+		i++;
 	}
+	va_end(args);
+	return (count);
 }
 
 int main()
 {
-	int result = printf("%s\n%d\n", "cc", 100);
-	printf("%d chars were written", result);
 	return 0;
 }
