@@ -10,27 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_putnbr.h"
-#include <stdio.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-static int	type(char format, va_list args)
+static int	ft_type(char type, va_list args)
 {
 	int count;
 
 	count = 0;
-	if (format == 'd' || format == 'i')
+	if (type == 'd' || type == 'i')
 		count += ft_putnbr(va_arg(args, int));
+    else if (type == 's')
+        count += ft_putstr(va_arg(args, char *));
+    else if (type == 'p')
+        count += ft_pointer(va_arg(args, void *));
+    else if (type == 'u')
+        count += ft_pointer(va_arg(args, unsigned int));
+    else if (type == '%')
+        count += ft_putchar('%');
 	return (count);
 }
-
-int ft_putchar(int c)
+int ft_putchar (char c)
 {
-	write (1, &c, 1);
-	return (1);
+    return write(1, &c, 1);
 }
-
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int	i;
@@ -38,23 +41,18 @@ int	ft_printf(const char *s, ...)
 
 	count = 0;
 	i = 0;
-	va_start(args, s);
-	while (s[i])
+	va_start(args, format);
+	while (format[i])
 	{
-		if (s[i] == '%')
+		if (format[i] == '%')
 		{
 			i++;
-			count += type(s[i], args);
+			count += ft_type(format[i], args);
 		}
 		else
-			count += ft_putchar(s[i]);
+			count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
 	return (count);
-}
-
-int main()
-{
-	return 0;
 }
