@@ -6,7 +6,7 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:57:41 by iumorave          #+#    #+#             */
-/*   Updated: 2024/10/30 20:38:41 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:57:44 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,44 @@
 
 static int	ft_type(char type, va_list args)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (type == 'd' || type == 'i')
 		count += ft_putnbr(va_arg(args, int));
-    else if (type == 's')
-        count += ft_putstr(va_arg(args, char *));
-    else if (type == 'p')
-        count += ft_pointer(va_arg(args, void *));
-    else if (type == 'u')
-        count += ft_pointer(va_arg(args, unsigned int));
-    else if (type == '%')
-        count += ft_putchar('%');
+	else if (type == 's')
+		count += ft_putstr(va_arg(args, char *));
+	else if (type == 'c')
+		count += ft_putchar((char)va_arg(args, int));
+	else if (type == 'p')
+		count += ft_pointer(va_arg(args, void *));
+	else if (type == 'u')
+		count += ft_unsigned_u(va_arg(args, unsigned int));
+	else if (type == 'x' || type == 'X' )
+		count += ft_puthexa(va_arg(args, unsigned int), letter);
+	else if (type == '%')
+		count += ft_putchar('%');
 	return (count);
 }
-int ft_putchar (char c)
-{
-    return write(1, &c, 1);
-}
-int	ft_printf(const char *format, ...)
+
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 
 	count = 0;
 	i = 0;
-	va_start(args, format);
-	while (format[i])
+	va_start(args, str);
+	while (str[i])
 	{
-		if (format[i] == '%')
+		if (str[i] == '%')
 		{
 			i++;
-			count += ft_type(format[i], args);
+			count += ft_type(str[i], args);
 		}
 		else
-			count += ft_putchar(format[i]);
+			count += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 12:17:09 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:56 by iumorave         ###   ########.fr       */
+/*   Created: 2024/11/03 16:40:08 by iumorave          #+#    #+#             */
+/*   Updated: 2024/11/03 17:51:24 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_pointer(void *ptr)
+int	ft_puthexa(unsigned long n, char letter)
 {
-	int	count;
+	int		counter;
+	char	*base;
 
-	write (1, "0x", 2);
-	count = 2;
-	if (ptr == NULL)
-	{
-		write(1, "0", 1);
-		count = 1;
-	}
+	counter = 0;
+	if (letter == 'x')
+		base = "0123456789abcdef";
+	else if (letter == 'X')
+		base = "0123456789ABCDEF";
 	else
+		return (0);
+	if (n >= 16)
 	{
-		ft_printhexa((unsigned long)ptr, 'x');
+		ft_print_hex(n / 16, letter);
 		count++;
 	}
+	ft_putchar(base[nbr % 16]);
+	count++;
 	return (count);
 }
