@@ -6,30 +6,30 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:40:08 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:24 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:15:32 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthexa(unsigned long n, char letter)
+int	ft_puthexa(unsigned long n, char c)
 {
-	int		counter;
+	int		count;
 	char	*base;
 
-	counter = 0;
-	if (letter == 'x')
+	count = 0;
+	if (c == 'x')
 		base = "0123456789abcdef";
-	else if (letter == 'X')
+	else if (c == 'X')
 		base = "0123456789ABCDEF";
 	else
 		return (0);
 	if (n >= 16)
 	{
-		ft_print_hex(n / 16, letter);
-		count++;
+		count += ft_puthexa(n / 16, c);
 	}
-	ft_putchar(base[nbr % 16]);
-	count++;
+	count += ft_putchar(base[n % 16]);
+	if (count < 0)
+		return (-1);
 	return (count);
 }

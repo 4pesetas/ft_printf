@@ -6,7 +6,7 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:09:34 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:29 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:41:35 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	ft_unsigned_u(unsigned int n)
 	count = 0;
 	if (n > 9)
 	{
-		ft_unsigned_int (n / 10);
-		count++;
+		count += ft_unsigned_u (n / 10);
 	}
-	ft_putchar(n % 10 + 48);
-	count++;
+	count += ft_putchar(n % 10 + 48);
+	if (count < 0)
+		return (-1);
 	return (count);
 }

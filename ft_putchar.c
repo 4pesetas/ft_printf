@@ -6,7 +6,7 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:56 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:09 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:40:48 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	ft_putchar(char c)
 {
-	return (write(1, &c, 1));
+	write(1, &c, 1);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 12:17:09 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:56 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:30:28 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ int	ft_pointer(void *ptr)
 	if (ptr == NULL)
 	{
 		write(1, "0", 1);
-		count = 1;
+		count++;
 	}
 	else
 	{
-		ft_printhexa((unsigned long)ptr, 'x');
-		count++;
+		count += ft_puthexa((unsigned long)ptr, 'x');
 	}
 	return (count);
 }

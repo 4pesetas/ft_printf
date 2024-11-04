@@ -6,7 +6,7 @@
 #    By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 17:24:23 by iumorave          #+#    #+#              #
-#    Updated: 2024/11/03 17:41:29 by iumorave         ###   ########.fr        #
+#    Updated: 2024/11/04 17:50:33 by iumorave         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -fr
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_puthexa.c ft_unsigned_u.c
+SRC = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_puthexa.c ft_unsigned_u.c ft_pointer.c
 
 OBJ = $(SRC:%.c=%.o)
 

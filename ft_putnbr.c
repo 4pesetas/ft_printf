@@ -6,7 +6,7 @@
 /*   By: iumorave <iumorave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:32:13 by iumorave          #+#    #+#             */
-/*   Updated: 2024/11/03 17:51:22 by iumorave         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:01:10 by iumorave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_putnbr(int nb)
 	}
 	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
-		count++;
+		count += ft_putnbr(nb / 10);
 	}
-	ft_putchar(nb % 10 + 48);
-	count++;
+	count += ft_putchar(nb % 10 + 48);
+	if (count < 0)
+		return (-1);
 	return (count);
 }
